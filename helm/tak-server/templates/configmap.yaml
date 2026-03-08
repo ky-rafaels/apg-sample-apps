@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: takserver-config
+  namespace: {{ .Values.namespace }}
+data:
+  CoreConfig.xml: |
+{{ .Values.takserver.config.coreConfig | indent 4 }}

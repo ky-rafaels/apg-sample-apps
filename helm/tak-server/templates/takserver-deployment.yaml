@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: takserver
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.takserver.replicas }}
+  selector:
+    matchLabels:
+      app: takserver
+  template:
+    metadata:
+      labels:
+        app: takserver
+    spec:
+      containers:
+      - name: takserver
+        image: {{ .Values.takserver.image }}
+        ports:
+        - containerPort: 8089
+        - containerPort: 8443
+        - containerPort: 8444
+        - containerPort: 8446
+        env:
+        - name: DB_HOST
+          value: takserver-db
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: takserver-secrets
+              key: db-password
+        volumeMounts:
+        - name: config
+          mountPath: /opt/tak/CoreConfig.xml
+          subPath: CoreConfig.xml
+        - name: logs
+          mountPath: /opt/tak/logs
+        - name: data
+          mountPath: /opt/tak/data
+      volumes:
+      - name: config
+        configMap:
+          name: takserver-config
+      - name: logs
+        emptyDir: {}
+      - name: data
+        emptyDir: {}

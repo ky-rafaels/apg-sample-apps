@@ -1,0 +1,39 @@
+# Default values for tak-server.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: takserver
+
+# Database configuration
+db:
+  image: takserver-db:latest
+  storage: 10Gi
+  password: password  # Change this!
+
+# TAK Server configuration
+takserver:
+  image: takserver:latest
+  replicas: 1
+  config:
+    coreConfig: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <Configuration xmlns="http://bbn.com/marti/xml/config"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="CoreConfig.xsd">
+          <network multicastTTL="5">
+              <input _name="stdssl" protocol="tls" port="8089" coreVersion="2"/>
+              <connector port="8443" _name="https"/>
+              <connector port="8444" useFederationTruststore="true" _name="fed_https"/>
+              <connector port="8446" clientAuth="false" _name="cert_https"/>
+          </network>
+          <auth>
+              <!-- Configure authentication as needed -->
+          </auth>
+          <!-- Add other configurations -->
+      </Configuration>
+
+# HTTPRoute configuration
+httproute:
+  enabled: true
+  host: takserver.example.com
+  gatewayName: my-gateway  # Name of the Gateway resource

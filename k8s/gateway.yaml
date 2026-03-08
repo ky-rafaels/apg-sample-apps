@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: takserver-gateway
+  namespace: takserver
+spec:
+  gatewayClassName: # Specify your GatewayClass, e.g., 'istio' or 'nginx'
+  listeners:
+  - name: https
+    hostname: takserver.example.com
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: takserver-tls  # Reference to a Secret containing the TLS cert

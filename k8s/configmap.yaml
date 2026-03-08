@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: takserver-config
+  namespace: takserver
+data:
+  # Add your CoreConfig.xml here
+  CoreConfig.xml: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration xmlns="http://bbn.com/marti/xml/config"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="CoreConfig.xsd">
+        <network multicastTTL="5">
+            <input _name="stdssl" protocol="tls" port="8089" coreVersion="2"/>
+            <connector port="8443" _name="https"/>
+            <connector port="8444" useFederationTruststore="true" _name="fed_https"/>
+            <connector port="8446" clientAuth="false" _name="cert_https"/>
+        </network>
+        <auth>
+            <!-- Configure authentication as needed -->
+        </auth>
+        <!-- Add other configurations -->
+    </Configuration>
