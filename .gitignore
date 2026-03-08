@@ -70,4 +70,4 @@ __pycache__/
 # Helm charts
 *.tgz
 
-tak/*
+src/*
