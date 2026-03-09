@@ -6,13 +6,13 @@ namespace: takserver
 
 # Database configuration
 db:
-  image: registry.docker-registry.svc.cluster.local:5000/tak-server-db:v1 
+  image: docker-registry.registry.svc.cluster.local:5000/tak-server-db:v1 
   storage: 10Gi
   password: password  # Change this!
 
 # TAK Server configuration
 takserver:
-  image: registry.docker-registry.svc.cluster.local:5000/tak-server:v2 
+  image: docker-registry.registry.svc.cluster.local:5000/tak-server:v2 
   replicas: 1
   config:
     coreConfig: |
