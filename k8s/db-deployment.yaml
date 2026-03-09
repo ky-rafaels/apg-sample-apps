@@ -14,8 +14,8 @@ spec:
         app: takserver-db
     spec:
       containers:
-      - name: postgres
-        image: postgres:15.1
+      - name: tak-server-db
+        image: registry.docker-registry.svc.cluster.local:5000/tak-server-db:v1 # Build your image 
         env:
         - name: POSTGRES_DB
           value: tak

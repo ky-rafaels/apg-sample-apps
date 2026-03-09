@@ -3,8 +3,10 @@ kind: Gateway
 metadata:
   name: takserver-gateway
   namespace: takserver
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
 spec:
-  gatewayClassName: # Specify your GatewayClass, e.g., 'istio' or 'nginx'
+  gatewayClassName: kommander-traefik 
   listeners:
   - name: https
     hostname: takserver.example.com
@@ -14,3 +16,5 @@ spec:
       mode: Terminate
       certificateRefs:
       - name: takserver-tls  # Reference to a Secret containing the TLS cert
+        kind: Secret
+    
