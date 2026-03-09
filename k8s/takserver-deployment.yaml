@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: takserver
-        image: registry.workload.example.com/tak-server:v2 # Build your image
+        image: registry.workload.example.com/tak-server:v1-amd64 # Build your image
         ports:
         - containerPort: 8089
         - containerPort: 8443
