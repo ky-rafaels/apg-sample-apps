@@ -57,4 +57,23 @@ data:
             <latestSA enable="true"/>
             <queue/>
         </buffer>
+        <security>
+            <tls context="TLSv1.2"
+                keymanager="SunX509"
+                keystore="JKS" keystoreFile="/opt/tak/certs/files/takserver.jks" keystorePass="atakatak"
+                truststore="JKS" truststoreFile="/opt/tak/certs/files/truststore-root.jks" truststorePass="atakatak">
+            <!-- <crl _name="TAKServer CA" crlFile="certs/files/ca.crl"/>  -->
+
+            </tls>
+
+            <!-- previous locations of keystore and truststore -->
+            <!--
+            <tls context="TLSv1.2"
+                keymanager="SunX509"
+                keystore="JKS" keystoreFile="certs/TAKServer.jks" keystorePass="atakatak"
+                truststore="JKS" truststoreFile="certs/truststore.jks" truststorePass="atakatak">
+            </tls>
+            -->
+
+        </security>
     </Configuration>
