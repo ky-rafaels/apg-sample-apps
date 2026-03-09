@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: takserver
-        image: docker-registry.registry.svc.cluster.local:5000/tak-server:v2 # Build your image
+        image: docker-registry.registry.svc.cluster.local:5000/takserver/tak-server:v2 # Build your image
         ports:
         - containerPort: 8089
         - containerPort: 8443
