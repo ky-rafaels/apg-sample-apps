@@ -36,4 +36,4 @@ takserver:
 httproute:
   enabled: true
   host: takserver.example.com
-  gatewayName: tak-server  # Name of the Gateway resource
+  gatewayName: takserver-gateway  # Name of the Gateway resource
